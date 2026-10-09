@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ホームページ  |  検索と便利ツール</title>
+    <meta name="description" content="Google検索やAI検索、URLができる便利なホームページ。オフラインでも利用できるほか、各種ツールやサービスにもすぐアクセスできます。">
+    <link rel="manifest" href="/ytaka5004911/manifest.json">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/ytaka5004911/favicon.ico">
+    <style>body{background:#fff;color:#000}@media(prefers-color-scheme:dark){body{background:#121212;color:#fff}}button:active{background-color:#1d4ed8;}main{display:block}a{display:inline-block;padding:12px 0}p{margin:12px 0}</style>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const r = navigator.serviceWorker.register('/ytaka5004911/sw.js');
+          r.then(s => s.update())
+           .catch(e => { if (window.console) console.error(e); });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>ホームページ|検索と便利ツール</h1>
+    <div id="d"></div>
+    <script>function f(){var x=new Date();document.getElementById("d").innerHTML=x.getFullYear()+"年"+(x.getMonth()+1)+"月"+x.getDate()+"日 "+("0"+x.getHours()).slice(-2)+":"+("0"+x.getMinutes()).slice(-2)}f();setInterval(f,1000);</script>
+    <main>
+      <form rel="noreferrer noopener" id="searchForm" role="search" action="https://www.google.com/search" method="get" target="_blank">
+        <label for="search">Googleで検索する</label>
+        <input aria-label="Googleで検索する内容" enterkeyhint="search" autocorrect="false" spellcheck="false" inputmode="search" id="search" placeholder="Googleで検索します..." required type="text" name="q" writingsuggestions="false">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="oe" value="UTF-8">
+        <input type="hidden" name="hl" value="ja">
+        <button aria-label="Google検索する" type="submit">Googleで検索</button>
+        <button aria-label="AI概要検索する" type="submit" name="udm" value="50">AI検索</button>
+        <button aria-label="URLを入力して転送する" id="url_btn" type="button">URL転送する</button>
+      </form>
+      <nav aria-label="リンク">
+        <ul>
+          <li><a target="_self" href="https://ytaka5004911.github.io/ytaka5004911/sym-checker/index.html">からだの相談チャット</a></li>
+        </ul>
+      </nav>
+    </main>
+    <script>
+    var S=document.getElementById('search');
+document.getElementById('url_btn').addEventListener('click',function(e){
+var v=S.value.replace(/^\s+|\s+$/g,'');if(e.preventDefault)e.preventDefault();else event.returnValue=false;
+if(v){if(v.indexOf('://')==-1&&v.indexOf('.')!=-1)v='https://'+v;if(!v.indexOf('http')){S.value='';location.href=v;}}
+});
+    </script><div class="gtranslate_wrapper"></div><script>if(/(^|&)p=1(&|$)/.test(location.search.substring(1))){window.gtranslateSettings={default_language:"ja",detect_browser_language:true,wrapper_selector:".gtranslate_wrapper",flag_style:"3d"};var s=document.createElement("script");s.src="https://cdn.gtranslate.net/widgets/latest/float.js";document.body.appendChild(s)}</script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "ホームページ",
+  "short_name": "ホーム",
+  "description": "ホームページ",
+  "start_url": "/ytaka5004911/?pwa=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "scope": "/ytaka5004911/",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/ytaka5004911/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/ytaka5004911/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
