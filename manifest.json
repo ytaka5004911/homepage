@@ -2,20 +2,20 @@
   "name": "ホームページ",
   "short_name": "ホーム",
   "description": "ホームページ",
-  "start_url": "/ytaka5004911/?pwa=true",
+  "start_url": "/homepage/?pwa=true",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2196f3",
-  "scope": "/ytaka5004911/",
+  "scope": "/homepage/",
   "orientation": "any",
   "icons": [
     {
-      "src": "/ytaka5004911/icon-192.png",
+      "src": "/homepage/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/ytaka5004911/icon-512.png",
+      "src": "/homepage/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
