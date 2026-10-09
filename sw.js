@@ -1,8 +1,7 @@
 const CACHE_NAME = 'my-app-cache-__VERSION__';
 
 const CACHE_PATHS = [
-'/ytaka5004911/',
-'/MedChartLite/'
+'/homepage/'
 ];
 
 self.addEventListener("install", () => {
