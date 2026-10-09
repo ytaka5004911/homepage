@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Update Service Worker version
+        run: |
+          HASH=$(git rev-parse --short HEAD)
+          echo "Commit hash: $HASH"
+          sed -i "s/__VERSION__/$HASH/g" sw.js
+          grep "CACHE_NAME" sw.js
+
+      - name: Verify Service Worker version
+        run: |
+          if grep -q "__VERSION__" sw.js; then
+            echo "ERROR: __VERSION__ was not replaced!"
+            exit 1
+          fi
+          echo "Service Worker version successfully updated."
+
+      - name: Verify Service Worker syntax
+        run: |
+          node --check sw.js
+          echo "Service Worker syntax is valid."
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
