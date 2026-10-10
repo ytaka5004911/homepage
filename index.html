@@ -82,6 +82,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+    height: 48px;
   }
     </style><style>
   .wifi-status {
@@ -112,7 +113,7 @@
     border-radius: 50%; background: currentColor;
   }
 
-  /* オフライン時：グレー＋斜線 */
+  /* オフライン時グレー＋斜線 */
   .wifi-status.is-offline { color: var(--wifi-off); }
   .wifi-status.is-offline .g {
     -webkit-mask-image: linear-gradient(48.4deg, #000 29.3px, transparent 29.3px, transparent 38.4px, #000 38.4px);
