@@ -76,6 +76,11 @@
   #percent {
     font-size: 16px;
     font-weight: bold;
+  }.one-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   }
     </style>
     <style>body{background:#fff;color:#000}@media(prefers-color-scheme:dark){body{background:#121212;color:#fff}}button:active{background-color:#1d4ed8;}main{display:block}a{display:inline-block;padding:12px 0}p{margin:12px 0}</style>
@@ -91,7 +96,7 @@
   </head>
   <body>
     <h1>ホームページ|検索と便利ツール</h1>
-    <div id="d"></div><div id="battery" class="medium" aria-label="バッテリー残量">
+    <div class="one-line"><div id="d"></div><div id="battery" class="medium" aria-label="バッテリー残量">
   <div class="battery-body">
     <div id="level"></div>
     <svg id="bolt" viewBox="0 0 24 32" aria-hidden="true">
@@ -99,7 +104,7 @@
     </svg>
   </div>
   <span id="percent">--%</span>
-    </div><script>
+    </div></div><script>
 (function () {
   var box = document.getElementById("battery");
   var level = document.getElementById("level");
