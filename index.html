@@ -129,10 +129,10 @@
     <style>body{background:#fff;color:#000}@media(prefers-color-scheme:dark){body{background:#121212;color:#fff}}button:active{background-color:#1d4ed8;}main{display:block}a{display:inline-block;padding:12px 0}p{margin:12px 0}</style>
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          const r = navigator.serviceWorker.register('/ytaka5004911/sw.js');
-          r.then(s => s.update())
-           .catch(e => { if (window.console) console.error(e); });
+        window.addEventListener('load', function(){
+          const r = navigator.serviceWorker.register("/homepage/sw.js');
+          r.then(function(s){s.update()})
+           .catch(function(e){ if (window.console) console.error(e); });
         });
       }
     </script>
@@ -204,7 +204,7 @@
   });
 })();
     </script>
-    <script>function f(){var x=new Date();document.getElementById("d").innerHTML=x.getFullYear()+"年"+(x.getMonth()+1)+"月"+x.getDate()+"日 "+("0"+x.getHours()).slice(-2)+":"+("0"+x.getMinutes()).slice(-2)}f();setInterval(f,1000);</script>
+    <script>function f(){if(typeof Date === "undefined"){return;}var x=new Date();document.getElementById("d").innerHTML=x.getFullYear()+"年"+(x.getMonth()+1)+"月"+x.getDate()+"日 "+("0"+x.getHours()).slice(-2)+":"+("0"+x.getMinutes()).slice(-2)}f();setInterval(f,1000);</script>
     <main>
       <form rel="noreferrer noopener" id="searchForm" role="search" action="https://www.google.com/search" method="get" target="_blank">
         <label for="search">Googleで検索する</label>
