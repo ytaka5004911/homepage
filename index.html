@@ -130,7 +130,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function(){
-          const r = navigator.serviceWorker.register("/homepage/sw.js');
+          const r = navigator.serviceWorker.register("/homepage/sw.js");
           r.then(function(s){s.update()})
            .catch(function(e){ if (window.console) console.error(e); });
         });
