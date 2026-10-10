@@ -8,7 +8,76 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2196f3">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="favicon.ico"><style>
+  body {
+    margin: 0;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  #battery {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .battery-body {
+    position: relative;
+    width: 34px;
+    height: 58px;
+    border: 3px solid #555;
+    border-radius: 6px;
+    padding: 3px;
+    box-sizing: border-box;
+  }
+
+  .battery-body::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 5px;
+    background: #555;
+    top: -8px;
+    left: 8px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  #level {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    height: 0%;
+    background: #eab308;
+    border-radius: 2px;
+    transition: height .3s ease, background-color .3s ease;
+  }
+
+  #bolt {
+    position: absolute;
+    width: 17px;
+    height: 25px;
+    left: 6px;
+    top: 14px;
+    display: none;
+    pointer-events: none;
+  }
+
+  #battery.charging #bolt {
+    display: block;
+  }
+
+  #battery.low #level { background: #ef4444; }
+  #battery.medium #level { background: #eab308; }
+  #battery.high #level { background: #22c55e; }
+
+  #percent {
+    font-size: 16px;
+    font-weight: bold;
+  }
+    </style>
     <style>body{background:#fff;color:#000}@media(prefers-color-scheme:dark){body{background:#121212;color:#fff}}button:active{background-color:#1d4ed8;}main{display:block}a{display:inline-block;padding:12px 0}p{margin:12px 0}</style>
     <script>
       if ('serviceWorker' in navigator) {
@@ -22,7 +91,48 @@
   </head>
   <body>
     <h1>ホームページ|検索と便利ツール</h1>
-    <div id="d"></div>
+    <div id="d"></div><div id="battery" class="medium" aria-label="バッテリー残量">
+  <div class="battery-body">
+    <div id="level"></div>
+    <svg id="bolt" viewBox="0 0 24 32" aria-hidden="true">
+      <path d="M14 0 L3 17 H10 L8 32 L21 12 H14 Z" fill="#fff"></path>
+    </svg>
+  </div>
+  <span id="percent">--%</span>
+    </div><script>
+(function () {
+  var box = document.getElementById("battery");
+  var level = document.getElementById("level");
+  var percent = document.getElementById("percent");
+
+  if (!navigator.getBattery) {
+    percent.textContent = "非対応";
+    return;
+  }
+
+  navigator.getBattery().then(function (battery) {
+    function update() {
+      var n = Math.round(battery.level * 100);
+
+      level.style.height = n + "%";
+      percent.textContent = n + "%";
+
+      box.className = n < 20 ? "low" :
+                      n >= 80 ? "high" : "medium";
+
+      if (battery.charging) {
+        box.className += " charging";
+      }
+    }
+
+    update();
+    battery.addEventListener("levelchange", update);
+    battery.addEventListener("chargingchange", update);
+  }).catch(function () {
+    percent.textContent = "取得不可";
+  });
+})();
+    </script>
     <script>function f(){var x=new Date();document.getElementById("d").innerHTML=x.getFullYear()+"年"+(x.getMonth()+1)+"月"+x.getDate()+"日 "+("0"+x.getHours()).slice(-2)+":"+("0"+x.getMinutes()).slice(-2)}f();setInterval(f,1000);</script>
     <main>
       <form rel="noreferrer noopener" id="searchForm" role="search" action="https://www.google.com/search" method="get" target="_blank">
