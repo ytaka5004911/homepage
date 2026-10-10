@@ -82,6 +82,47 @@
   align-items: center;
   gap: 10px;
   }
+    </style><style>
+  .wifi-status {
+    --wifi-on: #1c1d22;    /* オンライン時の色 */
+    --wifi-off: #9a9ea8;   /* オフライン時の色 */
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    color: var(--wifi-on);
+    vertical-align: middle;
+  }
+  .wifi-status, .wifi-status * { box-sizing: border-box; }
+  .wifi-status .g { position: absolute; inset: 0; }
+  .wifi-status i { position: absolute; display: block; }
+
+  .wifi-status .arc {
+    border: 4px solid currentColor;
+    border-radius: 50%;
+    clip-path: polygon(50% 50%, 0 0, 100% 0);
+  }
+  .wifi-status .a3 { width: 56px; height: 56px; left: -4px; top: 10px; }
+  .wifi-status .a2 { width: 40px; height: 40px; left: 4px;  top: 18px; }
+  .wifi-status .a1 { width: 24px; height: 24px; left: 12px; top: 26px; }
+  .wifi-status .dot {
+    width: 6px; height: 6px; left: 21px; top: 35px;
+    border-radius: 50%; background: currentColor;
+  }
+
+  /* オフライン時：グレー＋斜線 */
+  .wifi-status.is-offline { color: var(--wifi-off); }
+  .wifi-status.is-offline .g {
+    -webkit-mask-image: linear-gradient(48.4deg, #000 29.3px, transparent 29.3px, transparent 38.4px, #000 38.4px);
+            mask-image: linear-gradient(48.4deg, #000 29.3px, transparent 29.3px, transparent 38.4px, #000 38.4px);
+  }
+  .wifi-status.is-offline::after {
+    content: "";
+    position: absolute; left: 0; top: 22px;
+    width: 48px; height: 4px; border-radius: 2px;
+    background: currentColor;
+    transform: rotate(48.4deg);
+  }
     </style>
     <style>body{background:#fff;color:#000}@media(prefers-color-scheme:dark){body{background:#121212;color:#fff}}button:active{background-color:#1d4ed8;}main{display:block}a{display:inline-block;padding:12px 0}p{margin:12px 0}</style>
     <script>
@@ -104,7 +145,30 @@
     </svg>
   </div>
   <span id="percent">--%</span>
-    </div></div><script>
+    </div><span class="wifi-status" role="img" aria-label="Wi-Fi">
+  <span class="g">
+    <i class="arc a3"></i><i class="arc a2"></i><i class="arc a1"></i><i class="dot"></i>
+  </span>
+    </span></div><script>
+  (function () {
+    var icons = document.querySelectorAll('.wifi-status');
+
+    function update() {
+      if(!navigator.onLine){return;}
+      var online = navigator.onLine;
+      
+      icons.forEach(function (el) {
+        el.classList.toggle('is-offline', !online);
+        el.setAttribute('aria-label', 'Wi-Fi ' + (online ? 'オンライン' : 'オフライン'));
+      });
+    }
+
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
+    update();
+  })();
+</script>
+<script>
 (function () {
   var box = document.getElementById("battery");
   var level = document.getElementById("level");
