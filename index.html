@@ -197,13 +197,7 @@
     }
 
     update();
-    battery.addEventListener("levelchange", update);
-    battery.addEventListener("chargingchange", update);
-  }).catch(function () {
-    percent.textContent = "取得不可";
-  });
-})();
-    </script>  <h1>ホームページ|検索と便利ツール</h1>
+    battery.addEventListener("levelchange", <h1>ホームページ|検索と便利ツール</h1>
     <script>function f(){if(typeof Date === "undefined"){return;}var x=new Date();document.getElementById("d").innerHTML=x.getFullYear()+"年"+(x.getMonth()+1)+"月"+x.getDate()+"日 "+("0"+x.getHours()).slice(-2)+":"+("0"+x.getMinutes()).slice(-2)}f();setInterval(f,1000);</script>
     <main>
       <form rel="noreferrer noopener" id="searchForm" role="search" action="https://www.google.com/search" method="get" target="_blank">
@@ -222,16 +216,5 @@
         </ul>
       </nav>
     </main>
-    <h2>サイト内検索</h2>
-    <script async src="https://cse.google.com/cse.js?cx=029d231a4e1994bcf">
-</script>
-<div class="gcse-searchbox-only"></div>
-    <script>
-    var S=document.getElementById('search');
-document.getElementById('url_btn').addEventListener('click',function(e){
-var v=S.value.replace(/^\s+|\s+$/g,'');if(e.preventDefault)e.preventDefault();else event.returnValue=false;
-if(v){if(v.indexOf('://')==-1&&v.indexOf('.')!=-1)v='https://'+v;if(!v.indexOf('http')){S.value='';location.href=v;}}
-});
-    </script><div class="gtranslate_wrapper"></div><script>if(/(^|&)p=1(&|$)/.test(location.search.substring(1))){window.gtranslateSettings={default_language:"ja",detect_browser_language:true,wrapper_selector:".gtranslate_wrapper",flag_style:"3d"};var s=document.createElement("script");s.src="https://cdn.gtranslate.net/widgets/latest/float.js";document.body.appendChild(s)}</script>
   </body>
 </html>
