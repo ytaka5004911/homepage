@@ -7,15 +7,11 @@ A simple, mobile-friendly homepage featuring Google Search, AI Search, URL redir
 ## Features
 
 - **Google Search** — Search the web using Google.
-- **AI Search** — Access Google's AI search experience.
-- **URL Redirection** — Enter a URL to navigate directly to a website.
-- **Date and Time** — Display the current date and time.
 - **Health Consultation Chat** — Access the health consultation chatbot.
 - **Offline Support** — Service worker support for offline use where available.
 - **Progressive Web App (PWA)** — Includes a web app manifest.
-- **Responsive Design** — Works on mobile devices and desktop browsers.
+- **Responsive Design** — Works on mobile devices and desktop browser.
 - **Dark Mode** — Supports the system's preferred color scheme.
-- **Multilingual Support** — Optional translation widget.
 
 ## Technologies
 
