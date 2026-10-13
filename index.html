@@ -11,18 +11,17 @@
     <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="favicon.ico">
     <title>ホームページ|検索と便利ツール</title>
     <script>if('serviceWorker'in navigator)window.addEventListener('load',function(){navigator.serviceWorker.register('/homepage/sw.js').then(function(r){r.update()}).catch(function(){})});</script>
-    <style>button{display:inline-flex;align-items:center;gap:6px;}</style>
-    <script>function u(){var f=document.getElementById("searchForm");f.onsubmit=e=>{let q=document.getElementById("searchBox").value.trim();if(/^(https?:\/\/|[\w-]+\.)/i.test(q)){e.preventDefault();location.href=/^https?:\/\//i.test(q)?q:'https://'+q}}}document.addEventListener("DOMContentLoaded",function(){var checkbox=document.getElementById("checkboxURI");checkbox.checked=localStorage.uriauto===undefined||localStorage.uriauto==="true";if(checkbox.checked)u();else document.getElementById("searchForm").onsubmit=null;checkbox.addEventListener("change",function(){if(this.checked)u();else document.getElementById("searchForm").onsubmit=null})});</script>
+    <style>body{font-family:sans-serif, Arial;background:#fff;color:#333}@media(prefers-color-scheme:dark){body{background:#1a1a1a;color:#f0f0f0}}</style>
+    <script>document.addEventListener('DOMContentLoaded', function(){document.getElementById("searchForm").onsubmit=function(e){var q=document.getElementById("searchBox").value.trim();if(/^(https?:\/\/|[\w-]+\.)/i.test(q)){e.preventDefault();location.href=/^https?:\/\//i.test(q)?q:'https://'+q}}});</script>
   </head>
   <body>
-    <h1 style="color:blue">ホームページ|検索と便利ツール</h1>
+    <h1>ホームページ|検索と便利ツール</h1>
     <form id="searchForm" action="https://www.google.com/search" method="get" target="_blank">
       <input id="searchBox" oninvalid="this.setCustomValidity('検索するキーワードを入力するか、URLを入力してください。')" oninput="this.setCustomValidity('')" required placeholder="検索またはURLを入力" autocomplete="off" aria-label="Googleで検索またはURLを入力" type="search" name="q">
       <input type="hidden" name="ie" value="UTF-8">
       <input type="hidden" name="oe" value="UTF-8">
       <button aria-label="Googleで検索する" type="submit">検索 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg></button>
     </form>
-    <label><input type="checkbox" id="checkboxURI" onchange="localStorage.uriauto=this.checked+''" aria-label="URLを入力したら自動転送する">URL自動転送</label>
     <ul>
       <li><a target="_blank" href="https://ytaka5004911.github.io/homepage/sym/index.html">からだの相談チャット</a></li>
     </ul>
