@@ -12,7 +12,7 @@
     <title>ホームページ|検索と便利ツール</title>
     <script>if('serviceWorker'in navigator)window.addEventListener('load',function(){navigator.serviceWorker.register('/homepage/sw.js').then(function(r){r.update()}).catch(function(){})});</script>
     <style>body{font-family:sans-serif, Arial;background:#fff;color:#333}@media(prefers-color-scheme:dark){body{background:#1a1a1a;color:#f0f0f0}}</style>
-    <script>document.addEventListener('DOMContentLoaded', function(){document.getElementById("searchForm").onsubmit=function(e){var q=document.getElementById("searchBox").value.trim();if(/^(https?:\/\/|[\w-]+\.)/i.test(q)){e.preventDefault();location.href=/^https?:\/\//i.test(q)?q:'https://'+q}}});</script>
+    <script>document.addEventListener('DOMContentLoaded', function(){document.getElementById("searchForm").onsubmit=function(e){var q=document.getElementById("searchBox").value.trim();var urlRe=/^(https?:\/\/\S+|(([\w-]+\.)+[a-z]{2,}|localhost|\d{1,3}(\.\d{1,3}){3})(:\d+)?(\/\S*)?)$/i;if(urlRe.test(q)){e.preventDefault();if(/^https?:\/\//i.test(q)){location.href=q}else if(/^(localhost|\d{1,3}(\.\d{1,3}){3})/i.test(q)){location.href='http://'+q}else{location.href='https://'+q}}}});</script>
   </head>
   <body>
     <h1>ホームページ|検索と便利ツール</h1>
